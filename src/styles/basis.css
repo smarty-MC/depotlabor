@@ -1,0 +1,75 @@
+/* Grundstile aus dem Design System „Depotlabor“ (components/bundle.css, Stand 31.10.2026). Klassen-Präfix avd-.
+   Die mobile Stufe der Überschriften steht in tokens.css, die Komponenten-Stile in styles/komponenten/. */
+
+@layer avd-basis {
+:where(body) {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-text);
+  font-size: 17px;
+  line-height: 27px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+:where(a) { color: var(--color-brand); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+:where(a:hover) { color: var(--color-brand-strong); text-decoration-thickness: 2px; }
+:where(a, button, input, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-xs);
+}
+.avd-sr {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+.avd-num { font-variant-numeric: tabular-nums lining-nums; }
+.avd-icon { flex: none; display: inline-block; vertical-align: middle; }
+.avd-mark {
+  background: var(--color-mark);
+  color: var(--color-on-mark);
+  border-radius: var(--radius-xs);
+  padding: 0 0.2em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.avd-best { display: block; margin-top: 2px; color: var(--color-ink-muted); font-weight: 600; }
+.avd-hyphenate { -webkit-hyphens: auto; hyphens: auto; overflow-wrap: break-word; }
+/* Klebender Header und Leisten unten dürfen den Fokus nie verdecken (WCAG 2.4.11) */
+:where(html) { scroll-padding-top: calc(var(--header-height) + var(--space-4)); scroll-padding-bottom: var(--space-24); }
+/* Im Textmarker gilt immer color-on-mark, auch für Links und Sekundärtext (Dunkelmodus) */
+.avd-mark * { color: inherit; }
+
+/* Wortmarke */
+.avd-wordmark { font-weight: 700; color: var(--color-brand); text-decoration: none; white-space: nowrap; }
+.avd-wordmark:hover { color: var(--color-brand-strong); text-decoration: none; }
+
+/* SkipLink: erster Link der Seite, sichtbar bei Tastaturfokus */
+.avd-skip {
+  position: absolute; top: var(--space-2); left: var(--space-4); z-index: var(--z-popover);
+  padding: var(--space-2) var(--space-4); border-radius: var(--radius-md);
+  background: var(--color-brand); color: var(--color-on-brand); text-decoration: none; white-space: nowrap;
+  transform: translateY(-300%);
+}
+.avd-skip:focus, .avd-skip.is-visible { transform: none; color: var(--color-on-brand); }
+.avd-skip:focus-visible { border-radius: var(--radius-md); box-shadow: var(--focus-ring); }
+
+/* Container und klebende Hülle */
+.avd-container {
+  box-sizing: border-box; width: 100%; max-width: calc(var(--container-max) + 2 * var(--space-8));
+  margin-inline: auto; padding-inline: var(--space-4);
+}
+@media (min-width: 720px) { .avd-container { padding-inline: var(--space-8); } }
+/* Hülle für den Header, wenn er nicht direkt in body steht (Vorschauen, Layout-Wrapper) */
+.avd-sticky-top { position: sticky; top: 0; z-index: var(--z-header); }
+/* Abschnitt: Abstand nach oben space-12, ab 720 px space-16 */
+.avd-section { padding-block-start: var(--space-12); }
+@media (min-width: 720px) { .avd-section { padding-block-start: var(--space-16); } }
+
+/* Hohe Kontraste des Systems (Windows) */
+@media (forced-colors: active) {
+  .avd-mark { forced-color-adjust: none; }
+}
+}

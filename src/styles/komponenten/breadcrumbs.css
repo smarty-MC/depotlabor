@@ -1,0 +1,19 @@
+/* Breadcrumbs – aus dem Design System „Depotlabor“ (components/bundle.css, Stand 31.10.2026). */
+
+@layer avd-komponenten {
+.avd-crumbs { container-type: inline-size; }
+.avd-crumbs__list { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+.avd-crumbs__item { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--color-ink-muted); }
+.avd-crumbs__item a { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--color-brand); text-decoration: none; }
+.avd-crumbs__item a:hover { text-decoration: underline; }
+.avd-crumbs__item.is-current span { color: var(--color-ink); font-weight: 600; }
+.avd-crumbs__sep { color: var(--color-ink-muted); }
+.avd-crumbs__back { display: none; }
+@container (max-width: 559.98px) {
+  .avd-crumbs__item { display: none; }
+  .avd-crumbs__item.is-parent { display: inline-flex; }
+  .avd-crumbs__item.is-parent .avd-crumbs__sep { display: none; }
+  .avd-crumbs__item.is-parent a { min-height: 44px; }
+  .avd-crumbs__back { display: inline-block; }
+}
+}

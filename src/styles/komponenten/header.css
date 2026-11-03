@@ -1,0 +1,132 @@
+/* SiteHeader – aus dem Design System „Depotlabor“ (components/bundle.css, Stand 31.10.2026). */
+
+@layer avd-komponenten {
+@keyframes avd-drop { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+.avd-header {
+  container-type: inline-size; position: sticky; top: 0; z-index: var(--z-header);
+  background: var(--color-surface); border-bottom: 1px solid var(--color-line);
+}
+.avd-header__bar {
+  display: flex; align-items: center; gap: var(--space-2); box-sizing: border-box;
+  max-width: calc(var(--container-max) + 2 * var(--space-8)); height: var(--header-height); margin: 0 auto;
+  padding: 0 var(--space-2) 0 var(--space-4);
+}
+.avd-header__brand { margin-right: auto; }
+.avd-header__nav { display: none; }
+.avd-nav { display: flex; align-items: center; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.avd-nav__item { position: relative; display: flex; align-items: center; height: 40px; border-radius: var(--radius-md); }
+.avd-nav__item:hover { background: var(--color-surface-hover); }
+.avd-nav__item.is-open { background: var(--color-brand-soft); }
+.avd-nav__link {
+  display: flex; align-items: center; height: 100%; padding: 0 2px 0 var(--space-3);
+  color: var(--color-ink); text-decoration: none; white-space: nowrap; border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+.avd-nav__link:hover { color: var(--color-brand); text-decoration: none; }
+.avd-nav__item.is-open .avd-nav__link, .avd-nav__item.is-active .avd-nav__link { color: var(--color-brand); }
+.avd-nav__toggle {
+  display: grid; place-items: center; width: 28px; height: 100%; padding: 0 4px 0 0;
+  border: 0; border-radius: 0 var(--radius-md) var(--radius-md) 0; background: transparent; color: var(--color-ink-muted); cursor: pointer;
+}
+.avd-nav__toggle:hover, .avd-nav__toggle[aria-expanded="true"] { color: var(--color-brand); }
+.avd-nav__toggle .avd-icon { transition: transform .2s ease-out; }
+.avd-nav__toggle[aria-expanded="true"] .avd-icon { transform: rotate(180deg); }
+.avd-nav__link:focus-visible, .avd-nav__toggle:focus-visible { border-radius: var(--radius-md); }
+.avd-nav__item.is-active::after {
+  content: ""; position: absolute; left: var(--space-3); right: var(--space-3); bottom: -12px; height: 2px;
+  border-radius: var(--radius-full); background: var(--color-brand);
+}
+
+.avd-dd {
+  position: absolute; top: calc(100% + 12px); left: 0; z-index: var(--z-overlay); min-width: 240px; box-sizing: border-box;
+  padding: var(--space-3); background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
+}
+.avd-dd::before { content: ""; position: absolute; left: 0; right: 0; top: -14px; height: 14px; }
+.avd-dd[hidden] { display: none; }
+.avd-dd--end { left: auto; right: 0; }
+.avd-dd__cols { display: grid; gap: var(--space-2) var(--space-4); }
+.avd-dd__cols--2 { grid-template-columns: repeat(2, minmax(200px, 1fr)); }
+.avd-dd__cols--3 { grid-template-columns: repeat(3, minmax(190px, 1fr)); }
+.avd-dd__col ul { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.avd-dd__title { margin: var(--space-1) var(--space-3) var(--space-2); color: var(--color-ink-muted); font-weight: 650; }
+.avd-dd__link { display: block; padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); color: var(--color-ink); text-decoration: none; white-space: nowrap; }
+.avd-dd__link:hover { background: var(--color-surface-hover); color: var(--color-brand); text-decoration: none; }
+.avd-dd__link[aria-current="page"] { color: var(--color-brand); font-weight: 650; }
+.avd-dd__link:focus-visible { border-radius: var(--radius-md); }
+
+.avd-header__tools { display: flex; align-items: center; gap: var(--space-1); }
+.avd-header__cta, .avd-header__searchbtn { display: none; }
+
+.avd-searchbar {
+  position: absolute; top: 100%; left: 0; right: 0; z-index: var(--z-overlay);
+  background: var(--color-surface); border-bottom: 1px solid var(--color-line); box-shadow: var(--shadow-md);
+}
+.avd-searchbar[hidden] { display: none; }
+.avd-searchbar__form {
+  display: flex; gap: var(--space-2); box-sizing: border-box;
+  max-width: calc(var(--container-max) + 2 * var(--space-8)); margin: 0 auto; padding: var(--space-4) var(--space-8);
+}
+.avd-searchbar__field { flex: 1; }
+
+.avd-drawer {
+  position: absolute; top: 100%; left: 0; right: 0; z-index: var(--z-overlay); box-sizing: border-box;
+  display: flex; flex-direction: column; max-height: calc(100vh - var(--header-height)); overflow-y: auto;
+  background: var(--color-surface); border-top: 1px solid var(--color-line); box-shadow: var(--shadow-lg);
+}
+.avd-drawer[hidden] { display: none; }
+.avd-drawer__search { padding: var(--space-4) var(--space-4) var(--space-2); }
+.avd-drawer__searchbtn { width: 42px; height: 42px; color: var(--color-brand); }
+.avd-drawer > nav { padding: 0 var(--space-4) var(--space-4); }
+.avd-drawer__list { margin: 0; padding: 0; list-style: none; }
+.avd-drawer__list > li { border-bottom: 1px solid var(--color-line); }
+.avd-drawer__row { display: flex; align-items: center; gap: var(--space-1); min-height: 56px; }
+.avd-drawer__cat {
+  flex: 1; display: flex; align-items: center; min-height: 48px; padding: 0 var(--space-2);
+  border-radius: var(--radius-md); color: var(--color-ink); text-decoration: none;
+}
+.avd-drawer__cat:hover { color: var(--color-brand); text-decoration: none; }
+.avd-drawer__cat.is-active, .avd-drawer__list > li.is-open .avd-drawer__cat { color: var(--color-brand); }
+.avd-drawer__toggle {
+  display: grid; place-items: center; flex: none; width: 48px; height: 48px;
+  border: 0; border-radius: var(--radius-md); background: transparent; color: var(--color-brand); cursor: pointer;
+}
+.avd-drawer__toggle:hover { background: var(--color-surface-hover); }
+.avd-drawer__toggle:focus-visible, .avd-drawer__cat:focus-visible { border-radius: var(--radius-md); }
+.avd-drawer__toggle .avd-icon { transition: transform .2s ease-out; }
+.avd-drawer__toggle[aria-expanded="true"] .avd-icon { transform: rotate(180deg); }
+.avd-drawer__panel { padding: 0 0 var(--space-3); }
+.avd-drawer__panel[hidden] { display: none; }
+.avd-drawer__group + .avd-drawer__group { margin-top: var(--space-2); }
+.avd-drawer__gtitle { margin: var(--space-1) var(--space-3); color: var(--color-ink-muted); font-weight: 650; }
+.avd-drawer__group ul { margin: 0; padding: 0; list-style: none; }
+.avd-drawer__link {
+  display: flex; align-items: center; box-sizing: border-box; min-height: 44px; padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md); color: var(--color-ink); text-decoration: none;
+}
+.avd-drawer__link:hover { background: var(--color-surface-hover); color: var(--color-ink); text-decoration: none; }
+.avd-drawer__link[aria-current="page"] { color: var(--color-brand); font-weight: 600; }
+.avd-drawer__link:focus-visible { border-radius: var(--radius-md); }
+.avd-drawer__foot { position: sticky; bottom: 0; margin-top: auto; padding: var(--space-4); background: var(--color-surface); border-top: 1px solid var(--color-line); }
+.avd-scrim { position: absolute; top: 100%; left: 0; right: 0; height: 100vh; z-index: calc(var(--z-overlay) - 1); background: var(--color-scrim); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .avd-dd:not([hidden]), .avd-drawer:not([hidden]), .avd-searchbar:not([hidden]) { animation: avd-drop .18s ease-out; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .avd-nav__toggle .avd-icon, .avd-drawer__toggle .avd-icon, .avd-faq__chev { transition: none; }
+}
+@container (min-width: 1200px) {
+  .avd-header__bar { padding: 0 var(--space-8); gap: var(--space-3); }
+  .avd-header__brand { margin-right: var(--space-4); }
+  .avd-header__nav { display: block; margin-right: auto; }
+  .avd-header__cta { display: inline-flex; }
+  .avd-header__searchbtn { display: inline-grid; }
+  .avd-header__burger, .avd-drawer, .avd-scrim { display: none !important; }
+}
+@container (max-width: 1199.98px) {
+  .avd-dd, .avd-searchbar { display: none !important; }
+}
+
+/* Ab dem Scrollen hebt ein Schatten den klebenden Header ab (SiteHeader/README.md) */
+.avd-header.is-scrolled { box-shadow: var(--shadow-md); }
+}

@@ -1,0 +1,30 @@
+/* SiteFooter – aus dem Design System „Depotlabor“ (components/bundle.css, Stand 31.10.2026). */
+
+@layer avd-komponenten {
+.avd-footer { container-type: inline-size; background: var(--color-deep); color: var(--color-on-deep); }
+.avd-footer__inner { box-sizing: border-box; max-width: calc(var(--container-max) + 2 * var(--space-8)); margin: 0 auto; padding: var(--space-12) var(--space-4) var(--space-8); }
+.avd-footer a, .avd-footer .avd-linkbtn { color: var(--color-on-deep); text-decoration: none; }
+.avd-footer a:hover, .avd-footer .avd-linkbtn:hover { color: var(--color-on-deep); text-decoration: underline; text-underline-offset: 0.18em; }
+.avd-footer :focus-visible { box-shadow: var(--focus-ring-inverse); }
+.avd-footer .avd-wordmark { color: var(--color-on-deep); }
+.avd-footer__top { display: grid; gap: var(--space-8); }
+.avd-footer__brand p { max-width: 34ch; margin: var(--space-2) 0 0; color: var(--color-on-deep-muted); }
+.avd-footer__social { display: flex; flex-wrap: wrap; gap: var(--space-4); margin: var(--space-4) 0 0; padding: 0; list-style: none; }
+.avd-footer__social a { display: inline-flex; align-items: center; gap: 6px; }
+.avd-footer__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-8) var(--space-6); }
+.avd-footer__coltitle { margin: 0 0 var(--space-3); color: var(--color-on-deep); }
+.avd-footer__cols ul { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.avd-footer__cols a, .avd-footer__cols .avd-linkbtn { color: var(--color-on-deep-muted); }
+.avd-footer__cols a:hover, .avd-footer__cols .avd-linkbtn:hover { color: var(--color-on-deep); }
+.avd-footer__bottom { display: grid; gap: var(--space-3); margin-top: var(--space-10); padding-top: var(--space-6); border-top: 1px solid var(--color-deep-line); }
+.avd-footer__legal { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin: 0; padding: 0; list-style: none; }
+.avd-footer__disc, .avd-footer__copy { max-width: 76ch; margin: 0; color: var(--color-on-deep-muted); }
+@container (min-width: 720px) {
+  .avd-footer__inner { padding: var(--space-16) var(--space-8) var(--space-8); }
+  .avd-footer__top { grid-template-columns: minmax(0, 1fr) minmax(0, 2.6fr); gap: var(--space-10); }
+  .avd-footer__cols { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .avd-footer__cols--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .avd-footer__cols--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .avd-footer__cols--1 { grid-template-columns: minmax(0, 1fr); }
+}
+}

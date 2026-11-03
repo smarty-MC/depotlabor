@@ -1,0 +1,30 @@
+/* AdLabel (Werbehinweis) – aus dem Design System „Depotlabor“ (components/bundle.css, Stand 31.10.2026).
+   Abweichung: Das Erklär-Panel nutzt die HTML-Popover-API (Esc und Klick daneben schließen ohne JavaScript)
+   und hängt per CSS-Anker-Positionierung am Label statt per position: absolute. */
+
+@layer avd-bausteine {
+.avd-ad {
+  position: relative; display: inline-flex; align-items: center; gap: 2px; vertical-align: middle;
+  padding: 1px 1px 1px 7px; border: 1px solid var(--color-control); border-radius: var(--radius-sm);
+  background: var(--color-surface); color: var(--color-ink-muted); white-space: nowrap;
+}
+.avd-ad--plain { padding-right: 7px; }
+.avd-ad__tag { font-weight: 650; }
+.avd-ad__btn {
+  position: relative; display: inline-grid; place-items: center; width: 22px; height: 22px; padding: 0;
+  border: 0; border-radius: var(--radius-xs); background: transparent; color: var(--color-ink-muted); cursor: pointer;
+}
+.avd-ad__btn::after { content: ""; position: absolute; inset: -11px; }
+.avd-ad__btn:hover, .avd-ad:has(.avd-ad__pop:popover-open) .avd-ad__btn { background: var(--color-surface-hover); color: var(--color-ink); }
+.avd-ad__pop {
+  position: fixed; inset: auto; z-index: var(--z-popover); margin: var(--space-2) 0 0 -1px; overflow: visible;
+  position-area: bottom span-right; position-try-fallbacks: flip-block, flip-inline;
+  width: max-content; max-width: min(320px, 80vw); padding: var(--space-3) var(--space-4);
+  background: var(--color-surface); color: var(--color-ink); border: 1px solid var(--color-line);
+  border-radius: var(--radius-md); box-shadow: var(--shadow-md); white-space: normal; text-align: left;
+}
+/* Ohne Anker-Positionierung steht das Panel unten am Bildschirmrand */
+@supports not (position-area: bottom) {
+  .avd-ad__pop { inset: auto var(--space-4) var(--space-4); margin: 0 auto; }
+}
+}
