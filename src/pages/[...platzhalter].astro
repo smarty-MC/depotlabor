@@ -1,0 +1,45 @@
+---
+// Platzhalter für jedes Linkziel aus Header und Footer, zu dem es noch keine eigene Seite gibt.
+// Sobald eine Datei für die Adresse in src/pages liegt, entfällt ihr Platzhalter von selbst.
+import type { GetStaticPaths } from 'astro';
+import Breadcrumbs, { type Crumb } from '../components/Breadcrumbs.astro';
+import { SITE_LIVE } from '../config';
+import { alleZiele, type Ziel } from '../data/navigation';
+import Basis from '../layouts/Basis.astro';
+import { fehlendeSeiten } from '../lib/platzhalter';
+
+export const getStaticPaths = (() => {
+  const seitendateien = Object.keys(import.meta.glob('./**/*.{astro,md,mdx}'));
+  const fehlend = fehlendeSeiten(alleZiele(), seitendateien);
+  if (SITE_LIVE && fehlend.length > 0) {
+    throw new Error(`Vor dem Launch fehlen noch ${fehlend.length} Seiten: ${fehlend.map((ziel) => ziel.href).join(', ')}`);
+  }
+  return fehlend.map((ziel) => ({ params: { platzhalter: ziel.href.slice(1, -1) }, props: { ziel } }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  ziel: Ziel;
+}
+
+const { ziel } = Astro.props;
+const krumen: Crumb[] = [
+  { label: 'Startseite', href: '/' },
+  ...(ziel.kategorie ? [{ label: ziel.kategorie.label, href: ziel.kategorie.href }] : []),
+  { label: ziel.label },
+];
+---
+
+<Basis title={ziel.label}>
+  <div class="avd-container pl-seite">
+    <Breadcrumbs items={krumen} />
+    <h1 class="h1 pl-titel">{ziel.label}</h1>
+    <p class="lead pl-text">Diese Seite entsteht gerade. Bis dahin findest du auf der Startseite den aktuellen Stand von Depotlabor.</p>
+    <p class="body pl-text"><a href="/">Zur Startseite</a></p>
+  </div>
+</Basis>
+
+<style>
+  .pl-seite { display: flex; flex-direction: column; gap: var(--space-4); padding-block: var(--space-4) var(--space-24); }
+  .pl-titel { margin: var(--space-2) 0 0; color: var(--color-ink); }
+  .pl-text { margin: 0; max-width: var(--prose-max); color: var(--color-ink-muted); }
+</style>

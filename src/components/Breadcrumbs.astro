@@ -1,0 +1,36 @@
+---
+// Brotkrumen auf Unterseiten; unter 560 px Breite nur ein Link zurück zur übergeordneten Seite.
+import { Icon } from './Icon';
+import '../styles/komponenten/breadcrumbs.css';
+
+export interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  /** Von der Startseite bis zur aktuellen Seite; die letzte ist die aktuelle (ohne Link). */
+  items: Crumb[];
+}
+
+const { items } = Astro.props;
+const letzter = items.length - 1;
+---
+
+<nav class="avd-crumbs" aria-label="Brotkrumen">
+  <ol class="avd-crumbs__list">
+    {items.map((krume, i) => (
+      <li class:list={['avd-crumbs__item body-sm', { 'is-parent': i === letzter - 1, 'is-current': i === letzter }]}>
+        {i < letzter && krume.href ? (
+          <a href={krume.href}>
+            {i === letzter - 1 && <Icon name="chevron-left" size={16} class="avd-crumbs__back" />}
+            {krume.label}
+          </a>
+        ) : (
+          <span aria-current={i === letzter ? 'page' : undefined}>{krume.label}</span>
+        )}
+        {i < letzter && <Icon name="chevron-right" size={16} class="avd-crumbs__sep" />}
+      </li>
+    ))}
+  </ol>
+</nav>

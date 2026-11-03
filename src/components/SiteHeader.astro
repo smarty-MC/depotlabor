@@ -1,0 +1,19 @@
+---
+// Kopfzeile jeder Seite. Statisch gerendert; Dropdown, Suche und Schublade werden beim Leerlauf aktiv (client:idle).
+import { SITE_NAME } from '../config';
+import { CTA, HAUPTNAVIGATION, aktiveKategorie } from '../data/navigation';
+import { SiteHeader } from '../islands/SiteHeader';
+
+const pfad = Astro.url.pathname;
+---
+
+<div class="avd-sticky-top">
+  <SiteHeader
+    client:idle
+    brand={SITE_NAME}
+    sections={HAUPTNAVIGATION}
+    activeId={aktiveKategorie(pfad)}
+    currentHref={pfad}
+    cta={CTA}
+  />
+</div>

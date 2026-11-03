@@ -1,0 +1,45 @@
+---
+// Fußzeile auf tiefem Petrol mit Linkspalten und der Zeile zum Rechtsstand.
+import { RECHTSSTAND, RECHTSSTAND_GEPRUEFT_AM, SITE_NAME } from '../config';
+import { FUSSZEILE } from '../data/navigation';
+import { formatDatum } from '../lib/datum';
+import { Icon } from './Icon';
+import '../styles/komponenten/footer.css';
+---
+
+<footer class="avd-footer">
+  <div class="avd-footer__inner">
+    <div class="avd-footer__top">
+      <div class="avd-footer__brand">
+        <a class="avd-wordmark h3" href="/">{SITE_NAME}</a>
+        <p class="body-sm">Das Altersvorsorgedepot, einfach erklärt und ehrlich nachgerechnet.</p>
+      </div>
+      <nav class={`avd-footer__cols avd-footer__cols--${FUSSZEILE.length}`} aria-label="Weitere Seiten">
+        {FUSSZEILE.map((spalte) => (
+          <div>
+            <h2 class="avd-footer__coltitle label">{spalte.title}</h2>
+            <ul>
+              {spalte.links.map((link) => (
+                link.href.startsWith('https://') ? (
+                  <li>
+                    <a class="body-sm" href={link.href} target="_blank" rel="noopener">
+                      {link.label} <Icon name="external-link" size={16} /><span class="avd-sr"> (öffnet in neuem Tab)</span>
+                    </a>
+                  </li>
+                ) : (
+                  <li><a class="body-sm" href={link.href}>{link.label}</a></li>
+                )
+              ))}
+            </ul>
+          </div>
+        ))}
+      </nav>
+    </div>
+    <div class="avd-footer__bottom">
+      <p class="avd-footer__disc caption">
+        Keine Anlageberatung. Rechtsstand: {RECHTSSTAND}. Zuletzt&nbsp;geprüft:&nbsp;<time datetime={RECHTSSTAND_GEPRUEFT_AM}>{formatDatum(RECHTSSTAND_GEPRUEFT_AM)}</time>
+      </p>
+      <p class="avd-footer__copy caption">© 2026 {SITE_NAME}</p>
+    </div>
+  </div>
+</footer>
