@@ -1,0 +1,48 @@
+---
+// Rahmen der Komponenten-Vorschauen unter /komponenten/<name>/. Sie entstehen nur im Testbuild
+// (KOMPONENTEN_VORSCHAU=1, siehe astro.config.mjs) und tragen immer noindex.
+import '../styles/tokens.css';
+import '../styles/basis.css';
+import { Font } from 'astro:assets';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {/* Rangfolge der Stilebenen wie im Basislayout */}
+    <style is:inline>@layer avd-tokens, avd-basis, avd-bausteine, avd-komponenten;</style>
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{`Vorschau: ${title} – Depotlabor`}</title>
+    <Font cssVariable="--font-text" preload={[{ style: 'normal' }]} />
+    <Font cssVariable="--font-display" preload />
+  </head>
+  <body>
+    <main class="avd-container vs-seite">
+      <h1 class="h2 vs-titel">{title}</h1>
+      <p class="body-sm vs-hinweis">Interne Vorschau aus dem Testbuild. Alle Anbieter und Werte sind erfunden.</p>
+      <div class="vs-flaeche" data-testid="vorschau">
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  .vs-seite { padding-block: var(--space-8) var(--space-16); }
+  .vs-titel { margin: 0 0 var(--space-1); color: var(--color-ink); }
+  .vs-hinweis { margin: 0 0 var(--space-6); color: var(--color-ink-muted); }
+  .vs-flaeche { display: grid; gap: var(--space-8); padding: var(--space-6); border-radius: var(--radius-lg); background: var(--color-paper); }
+  .vs-gruppe { display: grid; gap: var(--space-3); min-width: 0; }
+  .vs-gruppe > h2 { margin: 0; color: var(--color-ink-muted); }
+  .vs-reihe { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); }
+  .vs-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: var(--space-6); align-items: start; }
+  .vs-deep { padding: var(--space-6); border-radius: var(--radius-lg); background: var(--color-deep); }
+</style>

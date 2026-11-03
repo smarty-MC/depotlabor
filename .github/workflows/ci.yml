@@ -7,6 +7,13 @@ jobs:
   ci:
     name: CI
     runs-on: ubuntu-latest
+    # Dieselbe Umgebung wie npm run test:e2e:container, damit die Screenshots pixelgleich sind.
+    # Die Version muss zu @playwright/test in package-lock.json passen.
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+    env:
+      # Baut die Vorschauseiten der Komponenten mit, die die Screenshot-Tests brauchen
+      KOMPONENTEN_VORSCHAU: '1'
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -17,8 +24,14 @@ jobs:
       - run: npm run check
       - run: npm test
       - run: npm run build
-      - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: playwright-ergebnisse
+          path: test-results/
+          retention-days: 7
       - uses: lycheeverse/lychee-action@v2
         with:
-          args: --offline --no-progress --root-dir "${{ github.workspace }}/dist" 'dist/**/*.html'
+          # Im Container zeigt nur $GITHUB_WORKSPACE auf den richtigen Ordner (die Action wertet args mit eval aus)
+          args: --offline --no-progress --root-dir "$GITHUB_WORKSPACE/dist" 'dist/**/*.html'

@@ -1,0 +1,43 @@
+---
+import { ProviderCard } from '../components/ProviderCard';
+import Vorschau from '../layouts/Vorschau.astro';
+---
+
+<Vorschau title="ProviderCard">
+  <section class="vs-gruppe">
+    <h2 class="caption">Abschließbar (mit Provisionslink), zertifiziert, angekündigt</h2>
+    <div class="vs-raster">
+      <ProviderCard
+        name="Musterbank Direkt"
+        kind="Direktbank"
+        status="available"
+        statusSince="2027-01-02"
+        facts={[{ label: 'Kosten pro Jahr', value: 'ca. 25 €' }, { label: 'ETF-Auswahl', value: 'über 1.000' }]}
+        href="https://example.com/"
+        affiliate
+        detailsHref="#"
+        updated="2027-01-05"
+      />
+      <ProviderCard
+        name="Beispiel Invest"
+        kind="Robo-Advisor"
+        status="certified"
+        statusSince="2026-12-15"
+        facts={[{ label: 'Kosten pro Jahr', value: 'ca. 60 €' }, { label: 'ETF-Auswahl', value: '12 Portfolios' }]}
+        note="Abschluss laut Anbieter ab März 2027."
+        detailsHref="#"
+        updated="2026-12-16"
+      />
+      <ProviderCard
+        name="Fiktiv Versicherung"
+        kind="Versicherer"
+        status="announced"
+        statusSince="2026-10-08"
+        facts={[{ label: 'Kosten pro Jahr', value: 'k. A.' }, { label: 'ETF-Auswahl', value: 'k. A.' }]}
+        note="Kosten noch nicht veröffentlicht."
+        notifyHref="#"
+        updated="2026-10-30"
+      />
+    </div>
+  </section>
+</Vorschau>

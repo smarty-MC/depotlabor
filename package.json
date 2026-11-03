@@ -8,12 +8,14 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "vorschau": "KOMPONENTEN_VORSCHAU=1 astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
     "test": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:e2e:container": "sh scripts/e2e-container.sh"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "^0.4.4",

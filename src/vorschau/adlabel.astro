@@ -1,0 +1,23 @@
+---
+import { AdLabel } from '../components/AdLabel';
+import { Button } from '../components/Button';
+import Vorschau from '../layouts/Vorschau.astro';
+---
+
+<Vorschau title="AdLabel">
+  <section class="vs-gruppe">
+    <h2 class="caption">Affiliate-Link direkt am Button</h2>
+    <div class="vs-reihe">
+      <Button href="https://example.com/" external sponsored iconRight="external-link">Zum Anbieter</Button>
+      <AdLabel kind="affiliate" />
+    </div>
+  </section>
+  <section class="vs-gruppe">
+    <h2 class="caption">Anzeige für bezahlte Flächen</h2>
+    <div class="vs-reihe"><AdLabel kind="anzeige" /></div>
+  </section>
+  <section class="vs-gruppe">
+    <h2 class="caption">Ohne Info-Button</h2>
+    <div class="vs-reihe"><AdLabel kind="affiliate" info={false} /></div>
+  </section>
+</Vorschau>
