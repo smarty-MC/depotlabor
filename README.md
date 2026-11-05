@@ -10,12 +10,16 @@ Gebaut mit Astro, Preact, Vitest und Playwright. Bis zum Launch trägt jede Seit
 | --- | --- |
 | `npm ci` | installiert die Pakete genau nach `package-lock.json` |
 | `npm run dev` | Entwicklungsserver auf http://localhost:4321 |
+| `npm run vorschau` | Entwicklungsserver mit den Komponenten-Vorschauen unter `/komponenten/<name>/` |
 | `npm run check` | Typprüfung mit `astro check` |
-| `npm test` | Rechentests mit Vitest |
+| `npm test` | Unit-Tests mit Vitest |
 | `npm run build` | baut die Seite nach `dist/` |
-| `npm run test:e2e` | Browser-Tests mit Playwright und axe |
+| `npm run test:e2e:container` | Browser-Tests mit Playwright, axe und Screenshots im Playwright-Container (wie in der CI) |
+| `npm run test:e2e:container -- --update-snapshots` | erzeugt die Screenshots nach einer gewollten Änderung neu |
 
-Voraussetzung ist Node.js 22.22 oder neuer.
+Voraussetzung ist Node.js 22.22 oder neuer, für die Browser-Tests zusätzlich Podman. `npm run test:e2e` startet dieselben Tests ohne Container; das nutzt die CI, die schon im Container läuft.
+
+Das Design kommt aus dem Design System „Depotlabor“. Komponenten, Stand und Abweichungen stehen in `docs/komponenten.md`.
 
 ## Regeln
 

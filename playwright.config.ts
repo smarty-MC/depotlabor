@@ -10,6 +10,10 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? 'github' : 'list',
+  // Screenshots entstehen und vergleichen sich nur im Playwright-Container (npm run test:e2e:container, CI),
+  // deshalb ohne Betriebssystem im Dateinamen.
+  snapshotPathTemplate: '{testDir}/__screenshots__/{testFilePath}/{arg}{-projectName}{ext}',
+  expect: { toHaveScreenshot: { animations: 'disabled', caret: 'hide', scale: 'css' } },
   use: { baseURL: `http://127.0.0.1:${PORT}` },
   projects: [
     { name: 'desktop', use: { ...devices['Desktop Chrome'] } },
@@ -18,6 +22,8 @@ export default defineConfig({
   webServer: {
     // In der CI ist dist/ schon gebaut, lokal baut der Testlauf selbst.
     command: process.env.CI ? vorschau : `npm run build && ${vorschau}`,
+    // Mit den Vorschauseiten der Komponenten (/komponenten/<name>/) für die Screenshot-Tests
+    env: { KOMPONENTEN_VORSCHAU: '1' },
     url: `http://127.0.0.1:${PORT}`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

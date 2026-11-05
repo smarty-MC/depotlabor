@@ -1,0 +1,47 @@
+---
+import { Button } from '../components/Button';
+import { Icon } from '../components/Icon';
+import { ICONS, type IconName } from '../components/icons';
+import Vorschau from '../layouts/Vorschau.astro';
+
+const icons = Object.keys(ICONS) as IconName[];
+---
+
+<Vorschau title="Bausteine: Button und Icon">
+  <section class="vs-gruppe">
+    <h2 class="caption">Button: primary, secondary, ghost, deaktiviert</h2>
+    <div class="vs-reihe">
+      <Button href="#">Vergleich starten</Button>
+      <Button variant="secondary" href="#">Details ansehen</Button>
+      <Button variant="ghost" iconLeft="mail">Benachrichtigen</Button>
+      <Button disabled>Nicht verfügbar</Button>
+    </div>
+  </section>
+  <section class="vs-gruppe">
+    <h2 class="caption">Button: klein, mit Icon, extern</h2>
+    <div class="vs-reihe">
+      <Button size="sm" href="#">Zulage berechnen</Button>
+      <Button size="sm" variant="secondary" iconLeft="arrow-up">Aufsteigend</Button>
+      <Button href="https://example.com/" external iconRight="external-link">Zum Anbieter</Button>
+    </div>
+  </section>
+  <section class="vs-gruppe">
+    <h2 class="caption">Button: inverse auf color-deep</h2>
+    <div class="vs-deep vs-reihe">
+      <Button variant="inverse" iconLeft="play">Video laden</Button>
+    </div>
+  </section>
+  <section class="vs-gruppe">
+    <h2 class="caption">Icons (Lucide 0.460, 24 px)</h2>
+    <ul class="vs-icons">
+      {icons.map((name) => (
+        <li><Icon name={name} size={24} /><span class="caption">{name}</span></li>
+      ))}
+    </ul>
+  </section>
+</Vorschau>
+
+<style>
+  .vs-icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-3) var(--space-4); margin: 0; padding: 0; list-style: none; }
+  .vs-icons li { display: flex; align-items: center; gap: var(--space-2); color: var(--color-ink); }
+</style>

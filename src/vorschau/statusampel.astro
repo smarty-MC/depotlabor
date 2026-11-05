@@ -1,0 +1,35 @@
+---
+import { StatusAmpel } from '../components/StatusAmpel';
+import Vorschau from '../layouts/Vorschau.astro';
+---
+
+<Vorschau title="StatusAmpel">
+  <section class="vs-gruppe">
+    <h2 class="caption">Standard (md) mit Datum des Statuswechsels</h2>
+    <div class="vs-reihe">
+      <StatusAmpel status="announced" since="2026-09-10" />
+      <StatusAmpel status="certified" since="2026-12-15" />
+      <StatusAmpel status="available" since="2027-01-02" />
+    </div>
+  </section>
+  <section class="vs-gruppe">
+    <h2 class="caption">Klein (sm) für Tabellen und Listen</h2>
+    <div class="vs-reihe">
+      <StatusAmpel status="announced" size="sm" />
+      <StatusAmpel status="certified" size="sm" />
+      <StatusAmpel status="available" size="sm" />
+    </div>
+  </section>
+  <section class="vs-gruppe">
+    <h2 class="caption">Nur Lampen, das Wort steht daneben (Statusleiste der Startseite)</h2>
+    <div class="vs-reihe">
+      <p class="body-sm vs-zaehler"><StatusAmpel status="announced" size="sm" hideLabel /><span><strong class="avd-num">12</strong> angekündigt</span></p>
+      <p class="body-sm vs-zaehler"><StatusAmpel status="certified" size="sm" hideLabel /><span><strong class="avd-num">3</strong> zertifiziert</span></p>
+      <p class="body-sm vs-zaehler"><StatusAmpel status="available" size="sm" hideLabel /><span><strong class="avd-num">1</strong> abschließbar</span></p>
+    </div>
+  </section>
+</Vorschau>
+
+<style>
+  .vs-zaehler { display: flex; align-items: center; gap: var(--space-2); margin: 0; color: var(--color-ink); }
+</style>

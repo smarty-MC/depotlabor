@@ -1,0 +1,171 @@
+/*
+ * Design-Tokens aus dem Design System „Depotlabor“ (tokens.json, Version 2, Stand 31.10.2026).
+ * Farben heißen --color-*, Typografie --type-*. Nutze immer die Tokens, nie feste Hex-Werte.
+ * Hell und dunkel folgen der Systemeinstellung (prefers-color-scheme).
+ * Die Schrift-Variablen --font-display und --font-text setzt die Astro-Fonts-API (astro.config.mjs).
+ */
+
+@layer avd-tokens {
+:root {
+  color-scheme: light dark;
+  --color-paper: #f4f7f6;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #ecf1ef;
+  --color-surface-hover: #f0f4f3;
+  --color-line: #d8e1df;
+  --color-grid: #e5ecea;
+  --color-control: #75837f;
+  --color-ink: #13201f;
+  --color-ink-muted: #4b5a57;
+  --color-brand: #0f5257;
+  --color-brand-strong: #0a3e42;
+  --color-brand-soft: #ddedeb;
+  --color-on-brand: #ffffff;
+  --color-info-line: #b5d6d2;
+  --color-accent: #f5a46c;
+  --color-accent-soft: #fde8d9;
+  --color-on-accent: #13201f;
+  --color-mark: #fbcaa1;
+  --color-on-mark: #13201f;
+  --color-status-announced: #865200;
+  --color-status-announced-soft: #fcefd3;
+  --color-status-announced-lamp: #b57800;
+  --color-status-certified: #1f4e9c;
+  --color-status-certified-soft: #e4ecfa;
+  --color-status-certified-lamp: #3566c2;
+  --color-status-available: #1b6a3b;
+  --color-status-available-soft: #def1e4;
+  --color-status-available-lamp: #2b8a51;
+  --color-warn: #7a4b00;
+  --color-warn-soft: #fcf2db;
+  --color-warn-line: #e0be6c;
+  --color-danger: #b3261e;
+  --color-danger-soft: #fcebe9;
+  --color-success: #1b6a3b;
+  --color-success-soft: #def1e4;
+  --color-data-1: #006e7b;
+  --color-data-2: #ce6b1e;
+  --color-data-3: #652e5a;
+  --color-deep: #0c3d41;
+  --color-deep-line: #235458;
+  --color-on-deep: #edf4f2;
+  --color-on-deep-muted: #a8c4c1;
+  --color-scrim: #13201f80;
+  --shadow-sm: 0 1px 2px #13201f0f, 0 1px 3px #13201f14;
+  --shadow-md: 0 8px 20px -6px #13201f24, 0 2px 6px #13201f0f;
+  --shadow-lg: 0 24px 48px -12px #13201f3d, 0 8px 16px -8px #13201f1f;
+  --focus-ring: 0 0 0 2px #ffffff, 0 0 0 4px #0f5257;
+  --focus-ring-inverse: 0 0 0 2px #0c3d41, 0 0 0 4px #edf4f2;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-paper: #0e1617;
+    --color-surface: #152022;
+    --color-surface-sunken: #0b1213;
+    --color-surface-hover: #1b2829;
+    --color-line: #273537;
+    --color-grid: #1c292b;
+    --color-control: #73827e;
+    --color-ink: #e8eeec;
+    --color-ink-muted: #a2b0ad;
+    --color-brand: #6cc3be;
+    --color-brand-strong: #93d6d1;
+    --color-brand-soft: #12393a;
+    --color-on-brand: #08191a;
+    --color-info-line: #24504f;
+    --color-accent: #f2a06a;
+    --color-accent-soft: #2e241d;
+    --color-on-accent: #13201f;
+    --color-mark: #e8955c;
+    --color-on-mark: #13201f;
+    --color-status-announced: #f2c35b;
+    --color-status-announced-soft: #392b0c;
+    --color-status-announced-lamp: #e2a92c;
+    --color-status-certified: #a6c3f7;
+    --color-status-certified-soft: #172a4b;
+    --color-status-certified-lamp: #6f99e6;
+    --color-status-available: #90d7a7;
+    --color-status-available-soft: #12301e;
+    --color-status-available-lamp: #4db879;
+    --color-warn: #f2c35b;
+    --color-warn-soft: #322609;
+    --color-warn-line: #6b5320;
+    --color-danger: #ff8f80;
+    --color-danger-soft: #3c1512;
+    --color-success: #90d7a7;
+    --color-success-soft: #12301e;
+    --color-data-1: #19a4b7;
+    --color-data-2: #dc701c;
+    --color-data-3: #a84d97;
+    --color-deep: #0f2b2e;
+    --color-deep-line: #1f3f42;
+    --color-on-deep: #e8eeec;
+    --color-on-deep-muted: #a2b0ad;
+    --color-scrim: #000000a6;
+    --shadow-sm: 0 1px 2px #00000080;
+    --shadow-md: 0 8px 24px -6px #000000b3;
+    --shadow-lg: 0 24px 56px -12px #000000d9;
+    --focus-ring: 0 0 0 2px #152022, 0 0 0 4px #6cc3be;
+    --focus-ring-inverse: 0 0 0 2px #0f2b2e, 0 0 0 4px #e8eeec;
+  }
+}
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  --container-max: 1200px;
+  --prose-max: 720px;
+  --header-height: 64px;
+  --bp-md: 720px;
+  --bp-lg: 960px;
+  --bp-xl: 1200px;
+  --z-sticky: 20;
+  --z-header: 50;
+  --z-overlay: 60;
+  --z-popover: 70;
+  --type-display-size: 56px; --type-display-line: 60px; --type-display-weight: 700; --type-display-tracking: -0.02em;
+  --type-h1-size: 40px; --type-h1-line: 46px; --type-h1-weight: 700; --type-h1-tracking: -0.015em;
+  --type-h2-size: 30px; --type-h2-line: 36px; --type-h2-weight: 650; --type-h2-tracking: -0.01em;
+  --type-h3-size: 22px; --type-h3-line: 28px; --type-h3-weight: 650; --type-h3-tracking: -0.005em;
+  --type-lead-size: 20px; --type-lead-line: 30px; --type-lead-weight: 400;
+  --type-body-size: 17px; --type-body-line: 27px; --type-body-weight: 400;
+  --type-body-sm-size: 15px; --type-body-sm-line: 22px; --type-body-sm-weight: 400;
+  --type-title-size: 18px; --type-title-line: 24px; --type-title-weight: 650;
+  --type-label-size: 15px; --type-label-line: 20px; --type-label-weight: 600;
+  --type-caption-size: 13px; --type-caption-line: 18px; --type-caption-weight: 500;
+  --type-figure-xl-size: 48px; --type-figure-xl-line: 52px; --type-figure-xl-weight: 700; --type-figure-xl-tracking: -0.02em;
+  --type-figure-lg-size: 30px; --type-figure-lg-line: 36px; --type-figure-lg-weight: 700; --type-figure-lg-tracking: -0.01em;
+  --type-figure-md-size: 17px; --type-figure-md-line: 24px; --type-figure-md-weight: 650;
+}
+/* Unter 720 px eine Stufe kleiner */
+@media (max-width: 719.98px) {
+  :root { --type-display-size: 40px; --type-display-line: 44px; --type-h1-size: 32px; --type-h1-line: 38px; --type-h2-size: 26px; --type-h2-line: 32px; --type-figure-xl-size: 40px; --type-figure-xl-line: 44px; }
+}
+.display { font-family: var(--font-display); font-size: var(--type-display-size); line-height: var(--type-display-line); font-weight: var(--type-display-weight); letter-spacing: var(--type-display-tracking); }
+.h1 { font-family: var(--font-display); font-size: var(--type-h1-size); line-height: var(--type-h1-line); font-weight: var(--type-h1-weight); letter-spacing: var(--type-h1-tracking); }
+.h2 { font-family: var(--font-display); font-size: var(--type-h2-size); line-height: var(--type-h2-line); font-weight: var(--type-h2-weight); letter-spacing: var(--type-h2-tracking); }
+.h3 { font-family: var(--font-display); font-size: var(--type-h3-size); line-height: var(--type-h3-line); font-weight: var(--type-h3-weight); letter-spacing: var(--type-h3-tracking); }
+.lead { font-family: var(--font-text); font-size: var(--type-lead-size); line-height: var(--type-lead-line); font-weight: var(--type-lead-weight); }
+.body { font-family: var(--font-text); font-size: var(--type-body-size); line-height: var(--type-body-line); font-weight: var(--type-body-weight); }
+.body-sm { font-family: var(--font-text); font-size: var(--type-body-sm-size); line-height: var(--type-body-sm-line); font-weight: var(--type-body-sm-weight); }
+.title { font-family: var(--font-text); font-size: var(--type-title-size); line-height: var(--type-title-line); font-weight: var(--type-title-weight); }
+.label { font-family: var(--font-text); font-size: var(--type-label-size); line-height: var(--type-label-line); font-weight: var(--type-label-weight); }
+.caption { font-family: var(--font-text); font-size: var(--type-caption-size); line-height: var(--type-caption-line); font-weight: var(--type-caption-weight); }
+.figure-xl { font-family: var(--font-text); font-size: var(--type-figure-xl-size); line-height: var(--type-figure-xl-line); font-weight: var(--type-figure-xl-weight); letter-spacing: var(--type-figure-xl-tracking); }
+.figure-lg { font-family: var(--font-text); font-size: var(--type-figure-lg-size); line-height: var(--type-figure-lg-line); font-weight: var(--type-figure-lg-weight); letter-spacing: var(--type-figure-lg-tracking); }
+.figure-md { font-family: var(--font-text); font-size: var(--type-figure-md-size); line-height: var(--type-figure-md-line); font-weight: var(--type-figure-md-weight); }
+}

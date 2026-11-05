@@ -10,11 +10,14 @@ Nie als Quelle: BMF-FAQ zur Reform und Regierungsentwurf BT-Drs. 21/4088 (Entwur
 - Preact-Islands in src/islands, Inhalte als MDX in src/content, Anbieterdaten in src/data/providers/*.json.
 - Schemas in src/content.config.ts, Zod aus 'astro/zod'.
 - Rechenlogik nur in src/calc: reines TypeScript, keine UI-Imports.
-- Styles: CSS-Custom-Properties in src/styles/tokens.css, kein Tailwind. Schriften lokal über die Astro-Fonts-API.
+- Styles: CSS-Custom-Properties in src/styles/tokens.css, kein Tailwind. Schriften (Figtree, Bricolage Grotesque) lokal über die Astro-Fonts-API.
+- Komponenten des Design Systems als Preact in src/components: ohne client:* statisches HTML, in Inseln wiederverwendbar. Ihr CSS liegt in @layer-Ebenen (docs/komponenten.md).
 
 ## Befehle
 - npm run dev | npm run build | npm run preview
 - npm run check (astro check) | npm test (Vitest) | npm run test:e2e (Playwright + axe)
+- Browser-Tests lokal nur im Container: npm run test:e2e:container (Screenshots neu: -- --update-snapshots)
+- Komponenten-Vorschau: npm run vorschau, dann /komponenten/<name>/
 - Einzeltest: npx vitest run src/calc
 
 ## Harte Regeln
@@ -29,7 +32,8 @@ Nie als Quelle: BMF-FAQ zur Reform und Regierungsentwurf BT-Drs. 21/4088 (Entwur
 - Bis zum Launch: SITE_LIVE = false in src/config.ts, also noindex auf jeder Seite.
 
 ## Design
-Komponentennamen aus dem Design System „Depotlabor“: StatusBadge, ResultCard, SourceNote, AdLabel, ProviderCard.
+Komponentennamen aus dem Design System „Depotlabor“: StatusAmpel, ResultCard, SourceNote, AdLabel, ProviderCard, SiteHeader, SiteFooter.
+Inventar und Stand jeder Komponente: docs/komponenten.md.
 Zahlen in Designs sind Platzhalter; echte Werte kommen aus src/calc und src/data.
 
 ## Arbeitsweise

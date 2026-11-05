@@ -1,4 +1,10 @@
 ---
+// Basislayout jeder Seite: Schriften, Tokens, Header, Inhalt und Footer im Design System „Depotlabor“.
+import '../styles/tokens.css';
+import '../styles/basis.css';
+import { Font } from 'astro:assets';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import { SITE_LIVE, SITE_NAME } from '../config';
 
 interface Props {
@@ -15,14 +21,22 @@ const seitentitel = title === SITE_NAME ? title : `${title} – ${SITE_NAME}`;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {/* Rangfolge der Stilebenen, bevor irgendein Stylesheet lädt; Seitenstile ohne Ebene stehen darüber */}
+    <style is:inline>@layer avd-tokens, avd-basis, avd-bausteine, avd-komponenten;</style>
     <title>{seitentitel}</title>
     {description && <meta name="description" content={description} />}
     {!SITE_LIVE && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
+    <Font cssVariable="--font-text" preload={[{ style: 'normal' }]} />
+    <Font cssVariable="--font-display" preload />
   </head>
   <body>
-    <slot />
+    <SiteHeader />
+    <main id="inhalt">
+      <slot />
+    </main>
+    <SiteFooter />
   </body>
 </html>

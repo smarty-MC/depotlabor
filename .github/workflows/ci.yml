@@ -7,6 +7,13 @@ jobs:
   ci:
     name: CI
     runs-on: ubuntu-latest
+    # Dieselbe Umgebung wie npm run test:e2e:container, damit die Screenshots pixelgleich sind.
+    # Die Version muss zu @playwright/test in package-lock.json passen.
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
+    env:
+      # Baut die Vorschauseiten der Komponenten mit, die die Screenshot-Tests brauchen
+      KOMPONENTEN_VORSCHAU: '1'
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -17,8 +24,29 @@ jobs:
       - run: npm run check
       - run: npm test
       - run: npm run build
-      - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: playwright-ergebnisse
+          path: test-results/
+          retention-days: 7
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+          retention-days: 1
+  links:
+    name: Links
+    needs: ci
+    # Ohne Container: lychee-action ist eine Composite-Action und ruft ihr entrypoint.sh über den Pfad
+    # des Hosts auf, den es im Container nicht gibt (Exit-Code 127).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
       - uses: lycheeverse/lychee-action@v2
         with:
           args: --offline --no-progress --root-dir "${{ github.workspace }}/dist" 'dist/**/*.html'

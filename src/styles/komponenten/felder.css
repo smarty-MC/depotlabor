@@ -1,0 +1,66 @@
+/* Formularfelder: Field, Input, Select, Stepper, Checkbox – aus dem Design System „Depotlabor“ (components/bundle.css, Stand 31.10.2026). */
+
+@layer avd-bausteine {
+.avd-field { display: grid; gap: var(--space-2); align-content: start; min-width: 0; }
+.avd-field__label { color: var(--color-ink); }
+.avd-field__opt { color: var(--color-ink-muted); font-weight: 400; }
+.avd-field__hint { margin: 0; color: var(--color-ink-muted); }
+.avd-field__error { margin: 0; display: flex; align-items: flex-start; gap: var(--space-1); color: var(--color-danger); font-weight: 600; }
+.avd-field__error .avd-icon { margin-top: 1px; }
+.avd-input, .avd-select {
+  position: relative; display: flex; align-items: center; min-height: 44px; box-sizing: border-box;
+  background: var(--color-surface); border: 1px solid var(--color-control); border-radius: var(--radius-md);
+  transition: border-color .15s ease-out, box-shadow .15s ease-out;
+}
+.avd-input:hover, .avd-select:hover { border-color: var(--color-ink-muted); }
+.avd-input:focus-within, .avd-select:focus-within { border-color: var(--color-brand); box-shadow: var(--focus-ring); }
+.avd-input:has([aria-invalid="true"]) { border-color: var(--color-danger); }
+.avd-input__el, .avd-select__el {
+  flex: 1; min-width: 0; height: 42px; margin: 0; padding: 0 var(--space-3);
+  border: 0; background: transparent; color: var(--color-ink); box-sizing: border-box;
+}
+.avd-input__el:focus-visible, .avd-select__el:focus-visible { outline: none; box-shadow: none; }
+.avd-input__el::placeholder { color: var(--color-ink-muted); opacity: 1; }
+.avd-input__affix { flex: none; padding-right: var(--space-3); color: var(--color-ink-muted); }
+.avd-input__affix--pre { padding: 0 0 0 var(--space-3); }
+.avd-input--sm { min-height: 40px; }
+.avd-input--sm .avd-input__el { height: 38px; }
+.avd-select__el { -webkit-appearance: none; appearance: none; padding-right: 44px; cursor: pointer; width: 100%; }
+.avd-select__chev { position: absolute; right: var(--space-3); color: var(--color-ink-muted); pointer-events: none; }
+
+/* Stepper */
+.avd-stepper { display: grid; gap: var(--space-2); justify-items: start; }
+.avd-stepper__ctrl {
+  display: inline-flex; align-items: center; box-sizing: border-box;
+  background: var(--color-surface); border: 1px solid var(--color-control); border-radius: var(--radius-md);
+}
+.avd-stepper__btn {
+  display: grid; place-items: center; width: 44px; height: 42px; padding: 0;
+  border: 0; border-radius: var(--radius-md); background: transparent; color: var(--color-brand); cursor: pointer;
+}
+.avd-stepper__btn:hover { background: var(--color-surface-hover); }
+.avd-stepper__btn:focus-visible { border-radius: var(--radius-md); }
+.avd-stepper__btn:disabled { color: var(--color-ink-muted); background: transparent; cursor: not-allowed; }
+.avd-stepper__val { min-width: 48px; text-align: center; color: var(--color-ink); }
+
+/* ───────── Checkbox ───────── */
+.avd-check { display: grid; gap: var(--space-1); }
+.avd-check__row { position: relative; display: flex; align-items: center; gap: var(--space-3); min-height: 44px; cursor: pointer; }
+.avd-check__input { position: absolute; top: 50%; left: 0; width: 22px; height: 22px; margin: 0; opacity: 0; transform: translateY(-50%); cursor: pointer; }
+.avd-check__box {
+  display: grid; place-items: center; flex: none; width: 22px; height: 22px; box-sizing: border-box;
+  border: 1.5px solid var(--color-control); border-radius: var(--radius-xs); background: var(--color-surface); color: transparent;
+  transition: background-color .15s ease-out, border-color .15s ease-out;
+}
+.avd-check__row:hover .avd-check__box { border-color: var(--color-ink-muted); }
+.avd-check__input:checked + .avd-check__box { background: var(--color-brand); border-color: var(--color-brand); color: var(--color-on-brand); }
+.avd-check__input:focus-visible { box-shadow: none; }
+.avd-check__input:focus-visible + .avd-check__box { box-shadow: var(--focus-ring); }
+.avd-check__label { color: var(--color-ink); }
+.avd-check__hint { margin-left: calc(22px + var(--space-3)); }
+
+/* Hohe Kontraste: Fokus bleibt sichtbar, auch wo sonst nur box-shadow wirkt */
+@media (forced-colors: active) {
+  .avd-check__input:focus-visible + .avd-check__box { outline: 2px solid CanvasText; outline-offset: 2px; }
+}
+}

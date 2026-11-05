@@ -1,4 +1,3 @@
-import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 import { SITE_LIVE } from '../../src/config';
 
@@ -15,10 +14,14 @@ test('Startseite lädt auf Deutsch, noindex passt zu SITE_LIVE', async ({ page }
   }
 });
 
-test('Startseite ohne Verstöße gegen WCAG 2.2 AA', async ({ page }) => {
-  await page.goto('/');
-  const ergebnis = await new AxeBuilder({ page })
-    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
-    .analyze();
-  expect(ergebnis.violations).toEqual([]);
+test('Platzhalterseite zeigt Titel, Brotkrumen und noindex', async ({ page }) => {
+  await page.goto('/foerderung/kinderzulage/');
+  await expect(page.getByRole('heading', { level: 1, name: 'Kinderzulage' })).toBeVisible();
+  await expect(page.getByRole('navigation', { name: 'Brotkrumen' })).toBeVisible();
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+});
+
+test('Vorschauseiten tragen immer noindex', async ({ page }) => {
+  await page.goto('/komponenten/statusampel/');
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
 });

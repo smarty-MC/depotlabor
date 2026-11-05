@@ -1,0 +1,61 @@
+---
+// Die Karte rechnet nicht selbst. Die Werte stammen aus der Prüftabelle A.10 im Projektplan
+// (Fälle 1, 3, 7, 10 und 13) und stehen hier fest; gerechnet wird ab C.3 in src/calc.
+import { ResultCard } from '../components/ResultCard';
+import Vorschau from '../layouts/Vorschau.astro';
+
+const hinweis = 'Zulagen gibt es bis 1.800 €, einzahlen kannst du bis 6.840 €.';
+---
+
+<Vorschau title="ResultCard (Mini-Rechner)">
+  <div class="vs-raster">
+    <ResultCard
+      title="Ergebnis"
+      contribution="1.800"
+      kids={0}
+      young={false}
+      result={{ total: '540 €', grund: '540 €', kind: '0 €' }}
+      hint={hinweis}
+    />
+    <ResultCard
+      title="Mit Kind"
+      contribution="300"
+      kids={1}
+      young={false}
+      result={{ total: '450 €', grund: '150 €', kind: '300 €' }}
+      hint={hinweis}
+    />
+    <ResultCard
+      title="Mit Berufseinsteigerbonus"
+      contribution="1.800"
+      kids={0}
+      young={true}
+      result={{ total: '540 €', grund: '540 €', kind: '0 €' }}
+      bonus="einmalig 200 € Berufseinsteigerbonus"
+      hint={hinweis}
+    />
+    <ResultCard
+      title="Unter dem Mindesteigenbeitrag"
+      contribution="119,99"
+      kids={1}
+      young={false}
+      result={{ total: '0 €', grund: '0 €', kind: '0 €' }}
+      note="Unter 120 € Eigenbeitrag im Jahr gibt es keine Zulage."
+      hint={hinweis}
+    />
+    <ResultCard
+      title="Fehler: keine Zahl"
+      contribution="abc"
+      kids={0}
+      young={false}
+      error="Bitte gib einen Betrag in Euro ein, z. B. 1.800."
+    />
+    <ResultCard
+      title="Fehler: über dem Höchstbetrag"
+      contribution="6.841"
+      kids={0}
+      young={false}
+      error="Mehr als 6.840 € im Jahr kannst du nicht einzahlen. Gib höchstens 6.840 € ein."
+    />
+  </div>
+</Vorschau>

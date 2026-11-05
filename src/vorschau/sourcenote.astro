@@ -1,0 +1,18 @@
+---
+import { SourceNote } from '../components/SourceNote';
+import Vorschau from '../layouts/Vorschau.astro';
+
+// Festes Vergleichsdatum, damit die Vorschau nicht mit dem Kalender altert
+const heute = '2026-11-03';
+---
+
+<Vorschau title="SourceNote">
+  <section class="vs-gruppe">
+    <h2 class="caption">Aktueller Stand</h2>
+    <SourceNote label="Preisverzeichnis" source="#quellen" asOf="2026-10-30" today={heute} />
+  </section>
+  <section class="vs-gruppe">
+    <h2 class="caption">Stand älter als 30 Tage</h2>
+    <SourceNote label="Produktinformationsblatt" source="#quellen" asOf="2026-09-14" today={heute} />
+  </section>
+</Vorschau>

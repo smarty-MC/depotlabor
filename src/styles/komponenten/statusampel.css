@@ -1,0 +1,33 @@
+/* StatusAmpel – aus dem Design System „Depotlabor“ (components/bundle.css, Stand 31.10.2026). */
+
+@layer avd-bausteine {
+.avd-status { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.avd-status__lamps {
+  display: inline-flex; align-items: center; gap: 4px; padding: 4px 6px;
+  border: 1px solid var(--color-line); border-radius: var(--radius-full); background: var(--color-surface-sunken);
+}
+.avd-status__lamps i {
+  display: block; width: 10px; height: 10px; box-sizing: border-box;
+  border: 1.5px solid var(--color-control); border-radius: var(--radius-full); background: transparent;
+}
+.avd-status--announced .is-on { background: var(--color-status-announced-lamp); border-color: var(--color-status-announced-lamp); }
+.avd-status--certified .is-on { background: var(--color-status-certified-lamp); border-color: var(--color-status-certified-lamp); }
+.avd-status--available .is-on { background: var(--color-status-available-lamp); border-color: var(--color-status-available-lamp); }
+.avd-status__pill {
+  display: inline-flex; align-items: center; gap: var(--space-1); padding: 2px 10px 2px 7px;
+  border-radius: var(--radius-full); font-weight: 650; white-space: nowrap;
+}
+.avd-status--announced .avd-status__pill { background: var(--color-status-announced-soft); color: var(--color-status-announced); }
+.avd-status--certified .avd-status__pill { background: var(--color-status-certified-soft); color: var(--color-status-certified); }
+.avd-status--available .avd-status__pill { background: var(--color-status-available-soft); color: var(--color-status-available); }
+.avd-status__since { color: var(--color-ink-muted); }
+.avd-status--sm { gap: 6px; }
+.avd-status--sm .avd-status__lamps { gap: 3px; padding: 3px 5px; }
+.avd-status--sm .avd-status__lamps i { width: 8px; height: 8px; }
+.avd-status--sm .avd-status__pill { padding: 1px 8px 1px 5px; }
+
+/* Hohe Kontraste: leuchtende Lampen bleiben sichtbar */
+@media (forced-colors: active) {
+  .avd-status__lamps i.is-on { background: CanvasText; border-color: CanvasText; }
+}
+}

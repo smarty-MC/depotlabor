@@ -1,0 +1,11 @@
+---
+// Seitenrahmen: höchstens container-max breit, mittig, Rand space-4 und ab 720 px space-8 – dieselbe Kante wie Header und Footer.
+interface Props {
+  as?: 'div' | 'section' | 'header' | 'footer';
+  class?: string;
+}
+
+const { as: Tag = 'div', class: klasse } = Astro.props;
+---
+
+<Tag class:list={['avd-container', klasse]}><slot /></Tag>

@@ -1,14 +1,47 @@
 ---
+import { Icon } from '../components/Icon';
+import { RECHTSSTAND_GEPRUEFT_AM } from '../config';
 import Basis from '../layouts/Basis.astro';
+import { formatDatum } from '../lib/datum';
 ---
 
 <Basis
   title="Depotlabor"
   description="Altersvorsorgedepot – einfach erklärt, ehrlich nachgerechnet. Unabhängige Infos und Anbietervergleich zum Förderstart 2027."
 >
-  <main>
-    <h1>Depotlabor</h1>
-    <p>Altersvorsorgedepot – einfach erklärt, ehrlich nachgerechnet.</p>
-    <p>Die Seite ist im Aufbau und startet im Dezember 2026.</p>
-  </main>
+  <section class="st-hero" aria-labelledby="start-titel">
+    <div class="avd-container">
+      <div class="st-hero__text">
+        <h1 id="start-titel" class="display">Alters&shy;vorsorge&shy;depot – einfach erklärt, ehrlich nachgerechnet</h1>
+        <p class="lead st-hero__lead">Ab dem 1. Januar 2027 fördert der Staat dein Depot. Wir zeigen dir, was du bekommst – und was es kostet.</p>
+        <p class="caption st-hero__stand">
+          <Icon name="calendar" size={16} />
+          <span>Rechtsstand geprüft am <time datetime={RECHTSSTAND_GEPRUEFT_AM}>{formatDatum(RECHTSSTAND_GEPRUEFT_AM)}</time></span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="avd-section st-last" aria-labelledby="aufbau-titel">
+    <div class="avd-container">
+      <h2 id="aufbau-titel" class="h2 st-titel">Depotlabor ist im Aufbau</h2>
+      <p class="body st-intro">
+        Die Seite startet im Dezember 2026. Bis dahin entstehen hier Zulagen-Rechner, Anbietervergleich und Ratgeber –
+        jede Zahl mit Quelle und Stand.
+      </p>
+    </div>
+  </section>
 </Basis>
+
+<style>
+  /* Startseiten-Muster st- aus dem Design „Startseite, Header und Footer“ */
+  .st-hero { padding: var(--space-10) 0 var(--space-12); background: var(--color-surface); border-bottom: 1px solid var(--color-line); }
+  @media (min-width: 960px) { .st-hero { padding: var(--space-16) 0; } }
+  .st-hero__text { max-width: 760px; }
+  .st-hero h1 { margin: 0 0 var(--space-5); color: var(--color-ink); }
+  .st-hero__lead { margin: 0 0 var(--space-6); max-width: 34em; color: var(--color-ink-muted); }
+  .st-hero__stand { display: flex; align-items: center; gap: var(--space-2); margin: 0; color: var(--color-ink-muted); }
+  .st-titel { margin: 0 0 var(--space-2); color: var(--color-ink); }
+  .st-intro { margin: 0 0 var(--space-6); max-width: var(--prose-max); color: var(--color-ink-muted); }
+  .st-last { padding-bottom: var(--space-24); }
+</style>
