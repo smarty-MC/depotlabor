@@ -31,7 +31,22 @@ jobs:
           name: playwright-ergebnisse
           path: test-results/
           retention-days: 7
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+          retention-days: 1
+  links:
+    name: Links
+    needs: ci
+    # Ohne Container: lychee-action ist eine Composite-Action und ruft ihr entrypoint.sh über den Pfad
+    # des Hosts auf, den es im Container nicht gibt (Exit-Code 127).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
       - uses: lycheeverse/lychee-action@v2
         with:
-          # Im Container zeigt nur $GITHUB_WORKSPACE auf den richtigen Ordner (die Action wertet args mit eval aus)
-          args: --offline --no-progress --root-dir "$GITHUB_WORKSPACE/dist" 'dist/**/*.html'
+          args: --offline --no-progress --root-dir "${{ github.workspace }}/dist" 'dist/**/*.html'
